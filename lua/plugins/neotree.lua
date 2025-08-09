@@ -8,7 +8,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		-- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
-	lazy = false, -- neo-tree will lazily load itself
+	lazy = true, -- neo-tree will lazily load itself
 	---@module "neo-tree"
 	---@type neotree.Config?
 	opts = {
@@ -17,9 +17,9 @@ return {
 			position = "left", -- can be "left", "right", or "float"
 			width = 30, -- fixed width of the Neo-tree sidebar
 			auto_expand_width = false, -- disables auto-expansion
-		}
+		},
 	},
-	config = function()
-		vim.keymap.set("n", "<C-e>", ":Neotree filesystem toggle reveal=true position=left<CR>", {})
-	end,
+	keys = {
+		{ "<C-e>", "<cmd>Neotree filesystem toggle reveal=true position=left<cr>", desc = "Toggle neotree" },
+	},
 }

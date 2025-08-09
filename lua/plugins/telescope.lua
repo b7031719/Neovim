@@ -6,21 +6,20 @@ return {
 		dependencies = {
       "nvim-lua/plenary.nvim",
     },
-		config = function()
-			local builtin = require("telescope.builtin")
-
-			-- Set keymaps for using Telescope
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files"})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Telescope help tags" })
-      vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = "Telescope old files" })
-      vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = "Telescope registers" })
-		end,
+    lazy = true,
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n", { desc = "Telescope fine files" } },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", mode = "n", { desc = "Telescope live grep" } },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", { desc = "Telescope buffers" } },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", mode = "n", { desc = "Telescope help tags" } },
+      { "<leader>fo", "<cmd>Telescope oldfiles<cr>", mode = "n", { desc = "Telescope old files" } },
+      { "<leader>fr", "<cmd>Telescope registers<cr>", mode = "n", { desc = "Telescope registers" } },
+    },
 	},
 
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
+    lazy = true,
 		config = function()
 			require("telescope").setup({
 				extensions = {
