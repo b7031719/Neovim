@@ -1,7 +1,7 @@
 -- All language servers are configured in this file
 return {
 	{
-		-- Mason installs langauge servers
+		-- Mason is a plugin manager that installs langauge servers
 		"mason-org/mason.nvim",
 		opts = {},
 	},
