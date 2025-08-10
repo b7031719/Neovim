@@ -4,6 +4,13 @@ return {
 		"rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio"
 	},
+  keys = {
+    { "<leader>db", function() require("dap").toggle_breakpoint() end, mode = "n", { desc = "Dap toggle breakpoint" } },
+    { "<leader>dc", function() require("dap").continue() end, mode = "n", { desc = "Dap continue" } },
+    { "<leader>dso", function() require("dap").step_over() end, mode = "n", { desc = "Dap step over" } },
+    { "<leader>dsi", function() require("dap").step_into() end, mode = "n", { desc = "Dap step into" } },
+    { "<leader>dsx", function() require("dap").step_out() end, mode = "n", { desc = "Dap step out" } },
+  },
 	config = function()
 		local dap, dapui = require("dap"), require("dapui")
     
@@ -22,21 +29,5 @@ return {
 			dapui.close()
 		end
 
-		-- keymaps
-		vim.keymap.set("n", "<Leader>db", function()
-			dap.toggle_breakpoint()
-		end)
-		vim.keymap.set("n", "<Leader>dc", function()
-			dap.continue()
-		end)
-		vim.keymap.set("n", "<Leader>dso", function()
-			dap.step_over()
-		end)
-		vim.keymap.set("n", "<Leader>dsi", function()
-			dap.step_into()
-		end)
-		vim.keymap.set("n", "<Leader>dsx", function()
-			dap.step_out()
-		end)
 	end,
 }

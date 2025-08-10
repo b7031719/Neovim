@@ -8,9 +8,6 @@ return {
 	{
 		-- Mason-lspconfig provides the ensure-installed function for installing language servers
 		"mason-org/mason-lspconfig.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
 		opts = {
 			ensure_installed = {
 				"lua_ls",
@@ -26,6 +23,7 @@ return {
 		-- Neovim built in LSP client
 		-- Sends and receives events from Neovim to language servers via language server protocol
 		"neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")

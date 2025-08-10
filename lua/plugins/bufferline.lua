@@ -1,7 +1,7 @@
 -- Provides the tab line at the top of the screen
 return {
   "akinsho/bufferline.nvim",
-  lazy = false,
+  event = "BufReadPost",
   version = "*",
   dependencies = "nvim-tree/nvim-web-devicons",
   init = function()

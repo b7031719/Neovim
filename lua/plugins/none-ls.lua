@@ -23,6 +23,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"jay-babu/mason-null-ls.nvim",
 		},
+    event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local null_ls = require("null-ls")
 
