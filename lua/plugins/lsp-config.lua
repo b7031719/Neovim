@@ -1,23 +1,6 @@
 -- All language servers are configured in this file
 return {
 	{
-		-- Mason-lspconfig provides the ensure-installed function for installing language servers
-		"mason-org/mason-lspconfig.nvim",
-		dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-		},
-		opts = {
-			ensure_installed = {
-				"lua_ls",
-				"pyright",
-				"ts_ls",
-				"bashls",
-				"html",
-				"cssls",
-			},
-		},
-	},
-	{
 		-- Neovim built in LSP client
 		-- Sends and receives events from Neovim to language servers via language server protocol
 		"neovim/nvim-lspconfig",
