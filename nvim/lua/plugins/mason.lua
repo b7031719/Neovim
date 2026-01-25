@@ -36,6 +36,7 @@ return {
 				"prettier",
 				"black",
 				"isort",
+        "nixfmt",
 			},
 			automatic_installation = true,
 			handlers = {},

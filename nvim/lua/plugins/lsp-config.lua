@@ -27,6 +27,17 @@ return {
 
       vim.lsp.config("nixd", {
         capabilities = capabilities,
+        cmd = { 'nixd' },
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+              command = { "nixfmt" },
+            },
+          },
+        },
       })
       vim.lsp.enable("nixd")
 
@@ -69,10 +80,10 @@ return {
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>oi", function()
-      vim.lsp.buf.code_action({
-        context = { only = { "source.organizeImports" } },
-        apply = true,
-      })
+        vim.lsp.buf.code_action({
+          context = { only = { "source.organizeImports" } },
+          apply = true,
+        })
       end)
     end,
   },
