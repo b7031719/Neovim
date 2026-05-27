@@ -1,0 +1,14 @@
+{
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "library": [
+      "/run/current-system/sw/share/hypr/stubs"
+    ],
+    "checkThirdParty": false
+  },
+  "diagnostics": {
+    "globals": ["hl"]
+  }
+}
