@@ -2,6 +2,7 @@ local editor = "kitty -e nvim"
 local fileManager = "kitty -e yazi"
 local menu = "wofi --show drun"
 local terminal = "kitty"
+local browser = "zen-twilight.desktop"
 
 hl.config({
   general = {
@@ -56,7 +57,7 @@ hl.bind("SUPER + Q", hl.dsp.exec_raw("uwsm app -- " .. terminal))
 hl.bind("SUPER + M", hl.dsp.exit())
 hl.bind("SUPER + R", hl.dsp.exec_raw("uwsm app -- " .. menu))
 hl.bind("SUPER + C", hl.dsp.window.close())
-hl.bind("SUPER + B", hl.dsp.exec_raw("uwsm app -- zen-twilight.desktop"))
+hl.bind("SUPER + B", hl.dsp.exec_raw("uwsm app -- " .. browser))
 hl.bind("SUPER + T", hl.dsp.window.float())
 hl.bind("SUPER + E", hl.dsp.exec_raw("uwsm app -- " .. fileManager))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle"}))
