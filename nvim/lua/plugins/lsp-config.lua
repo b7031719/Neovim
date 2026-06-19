@@ -7,12 +7,12 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       vim.lsp.config("lua_ls", {
         capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
-              -- Prevents the vim commands from being highlighted as an error
               globals = { "vim" },
             },
           },
@@ -63,7 +63,7 @@ return {
 
       -- Diagnostic settings
       vim.diagnostic.config({
-        virtual_text = false,
+        virtual_text = true,
         signs = true,
         underline = true,
         update_in_insert = false,
