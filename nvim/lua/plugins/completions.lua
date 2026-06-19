@@ -4,7 +4,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",          -- Pulls completion suggetsions from Neovim's built-in LSP client, the bridge between lsp and nvim-cmp
+			"hrsh7th/cmp-nvim-lsp",          -- Pulls completion suggestions from Neovim's built-in LSP client, the bridge between lsp and nvim-cmp
 			"L3MON4D3/LuaSnip",              -- Provides code snippets (code templates)
 			"saadparwaiz1/cmp_luasnip",      -- Makes LuaSnip snippets available in the nvim-cmp completion list
 			"rafamadriz/friendly-snippets",  -- A snippet collection
@@ -52,6 +52,7 @@ return {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" }, -- Completions from LSP
 					{ name = "luasnip" }, -- For luasnip users.
+          { name = "pyright" },
 					{ name = "buffer" },
 					{ name = "render-markdown" },
 				}),
