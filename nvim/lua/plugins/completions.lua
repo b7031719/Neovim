@@ -14,16 +14,21 @@ return {
 			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
+      -- SETUP
 			cmp.setup({
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 					end,
 				},
+
+        -- WINDOW OPTIONS
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
 				},
+
+        -- KEYMAPS
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -49,9 +54,11 @@ return {
 						end
 					end, { "i", "s" }),
 				}),
+
+        -- COMPLETION SOURCES
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" }, -- Completions from LSP
-					{ name = "luasnip" }, -- For luasnip users.
+					{ name = "luasnip" }, -- Completions from LuaSnip
           { name = "pyright" },
 					{ name = "buffer" },
 					{ name = "render-markdown" },
