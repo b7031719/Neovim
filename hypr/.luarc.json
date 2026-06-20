@@ -9,6 +9,6 @@
     "checkThirdParty": false
   },
   "diagnostics": {
-    "globals": [ "vim", "hl"]
+    "globals": [ "hl"]
   }
 }
