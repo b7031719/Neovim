@@ -1,15 +1,3 @@
---------------------------
--- MAPLEADERS
---------------------------
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
---------------------------
--- REQUIRES 
---------------------------
-
--- Custom options defined here
 require("vim-options")
 require("keymaps")
 
