@@ -3,32 +3,25 @@
     // "layer": "top", // Waybar at top layer
     "position": "left", // Waybar position (top|bottom|left|right)
     // "height": 30, // Waybar height (to be removed for auto height)
+    "margin": "5 0 5 5",
     "reload_style_on_change": true,
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 10, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "mpd",
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "backlight",
-        "keyboard-state",
-        "battery",
-        "battery#bat2",
         "clock",
+        "custom/power",
+        "battery",
+        "group/sound",
+        "network",
+        "bluetooth",
+        "backlight",
         "tray",
-        "custom/power"
+        "mpd"
     ],
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
+    "modules-center": [
+      "hyprland/workspaces"
+    ],
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -55,64 +48,38 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
     "clock": {
         // "timezone": "America/New_York",
         "format": "{:%H\n%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-alt": "{:%y\n%m\n%d}"
     },
     "backlight": {
-        // "device": "acpi_video1",
+        "device": "intel_backlight",
         "format": "{icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon}",
         "format-full": "{icon}",
-        "format-charging": "",
         "format-plugged": "",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+    "group/sound": {
+      "orientation": "vertical",
+      "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": true,
+        "children-class": "pulseaudio/slider"
+      },
+      "modules": [
+        "wireplumber",
+        "pulseaudio/slider"
+      ]
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -124,47 +91,69 @@
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
         "on-click": "nmtui"
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
+    "wireplumber": {
         "format": "{icon}",
-        "format-bluetooth": "{icon}",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
+        "format-muted": "",
         "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+            "default": ["", ""]
+        }
     },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    "pulseaudio/slider": {
+      "min": 0,
+      "max": 100,
+      "orientation": "vertical"
     },
     "custom/power": {
-        "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
+      "format" : "⏻",
+      "tooltip": false,
+      "menu": "on-click",
+      "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+      "menu-actions": {
 			"shutdown": "shutdown",
 			"reboot": "reboot",
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
+    },
+    
+    "hyprland/workspaces": {
+      "all-outputs": true,
+      "active-only": false,
+      "on-click": "activate",
+      "persistent-only": false,
+      "format": "{icon}",
+      "format-icons": {
+        "default": "",
+        "active": ""
+      },
+      "persistent-workspaces": {
+        "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      }
+    },
+
+    "bluetooth": {
+      "format": "",
+      "format-disabled": "",
+      "format-off": "󰂲",
+      "format-on": "󰂯",
+      "format-connected": "",
+      "on-click": "blueman-manager",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+
+    "tray": {
+      "icon-size": 21,
+      "spacing": 20,
+      "icons": {
+        "blueman-tray": "",
+        "blueman": "",
+        "blueman-applet": ""
+      }
     }
 }
