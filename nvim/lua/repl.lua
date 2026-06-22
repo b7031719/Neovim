@@ -89,8 +89,6 @@ local function run_code_block()
 			return
 		end
 
-    vim.notify("Sending (" .. #text .. " chars):\n" .. vim.inspect(text))
-
 		send_to_repl(text)
 
 		-- Move cursor to (hopefully) land on the next paragraph
