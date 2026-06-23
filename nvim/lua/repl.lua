@@ -82,7 +82,6 @@ local function run_code_block()
 		-- Yank the selected text and store in register v
 		vim.cmd('normal! "vy')
 		local text = vim.fn.getreg("v")
-    text = vim.trim(text) .. "\n"
 
 		if text == "" then
 			vim.notify("No text selected")
