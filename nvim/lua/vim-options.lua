@@ -10,3 +10,4 @@ vim.opt.colorcolumn = "0"
 vim.opt.signcolumn = "yes"
 vim.opt.smartindent = true
 vim.opt.scrolloff = 8
+vim.opt.clipboard = "unnamedplus"
