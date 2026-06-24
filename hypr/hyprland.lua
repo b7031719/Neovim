@@ -16,8 +16,8 @@ local function screen_record(opts)
 	opts = opts or {}
 
 	-- Check if wf-recorder is running
-	local handle = io.popen("pgrep -x wf-recorder 2>/dev/null")
-	local output = handle and handle:read("*a") or "" -- check handle is not nil then read the output (pid) or empty string to prevent match error
+	local handle = io.popen("pgrep -x wf-recorder 2>/dev/null") -- Redirect stderr to /dev/null so not included in output
+	local output = handle and handle:read("*a") or "" -- check handle is not nil then read the output (pid) or empty string to prevent match error if nil
 	if handle then
 		handle:close() -- close the handle if valid
 	end
@@ -36,7 +36,7 @@ local function screen_record(opts)
 		if opts.mode == "full" then
 			hl.exec_cmd("wf-recorder -f " .. screen_recording_filename)
 		elseif opts.mode == "region" then
-			hl.exec_cmd("wf-recorder -g \"$(slurp)\" -f " .. screen_recording_filename)
+			hl.exec_cmd('wf-recorder -g "$(slurp)" -f ' .. screen_recording_filename)
 		else
 			notify("Recording failed", "mode not specified")
 		end
